@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="jogl">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/make/config/jogl" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/make/config/nativewindow" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/make/config/oculusvr" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/src/jogl/classes" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/src/nativewindow/classes" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/src/newt/classes" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/src/oculusvr/classes" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/src/test" />
+      <root url="file://$USER_HOME$/Downloads/jogl-v2.3.2/jogl-v2.3.2/tools/jackpotc/test/oldgears/src/jogl111" />
+    </SOURCES>
+  </library>
+</component>

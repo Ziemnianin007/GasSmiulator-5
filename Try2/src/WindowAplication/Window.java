@@ -6,6 +6,7 @@ package WindowAplication; /**
 import Graphic.GraphicModule;
 import Graphic.GraphicPanel;
 import Graphic.ImagePanel;
+import Graphic.JLabelImg;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,8 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
+import java.lang.*;
+
 
 
 public class Window extends JFrame {
@@ -29,11 +32,11 @@ public class Window extends JFrame {
     private JButton Open;
     private JButton Reset;
 
-    private JButton Logo;
+    private JLabel Logo;
 
     private JPanel UpperButtons;
     private JPanel panel;
-    private JLabel ImgLabel;
+    private JLabelImg ImgLabel;
 
     //Default constructor
     public Window() {
@@ -48,7 +51,7 @@ public class Window extends JFrame {
         //Upper buttons panel
         UpperButtons = new JPanel();
         Start = new JButton("Start");
-        Open = new JButton("Open");
+        Open = new JButton("Open image");
         Reset = new JButton("Reset");
         UpperButtons.add(Start);
         UpperButtons.add(Open);
@@ -60,22 +63,11 @@ public class Window extends JFrame {
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.insets = new Insets(2,2,2,2);  //interspace
         c.gridx = 1;
-
         c.gridy = 0;
         add(UpperButtons,c);
 
         //Logo
-        BufferedImage thumbnail = null;
-        try {
-            BufferedImage tempImg = ImageIO.read(new File("Kinetic theory of gases.png"));
-            thumbnail = GraphicModule.resizeImage(tempImg,tempImg.getType(),50,50);
-
-        } catch (IOException e) {
-        }
-        Image ImgLogo= thumbnail;
-        ImageIcon icon = new ImageIcon(ImgLogo,"GasSim 0.1");
-
-        Logo = new JButton(icon);
+        Logo = new JLabelImg(35,35);
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;
         //c.weighty = 1.0;   //vertical space
@@ -86,17 +78,8 @@ public class Window extends JFrame {
         c.gridy = 0;       //row
         add(Logo,c);
 
-        //Image panel
-        thumbnail = null;
-        try {
-            BufferedImage tempImg = ImageIO.read(new File("Kinetic theory of gases.png"));
-            thumbnail = GraphicModule.resizeImage(tempImg,tempImg.getType(),600,600);
 
-        } catch (IOException e) {
-        }
-        ImgLogo= thumbnail;
-        icon = new ImageIcon(ImgLogo,"GasSim 0.1");
-        ImgLabel = new JLabel("",icon, JLabel.CENTER);
+        ImgLabel = new JLabelImg();
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;
         //c.weighty = 1.0;   //vertical space
@@ -132,19 +115,31 @@ public class Window extends JFrame {
         Start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Submit");
+                JOptionPane.showMessageDialog(null,"You clicked start, but it's still version 0.1 :)");
             }
         });
         Open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                int result = fc.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    try {
+                        BufferedImage img2 = ImageIO.read(file);
+                        ImgLabel.SetJLabelImg(600,600,img2);
 
+                    } catch (IOException a) {
+                        JOptionPane.showMessageDialog(null,"You should choose image file");
+                        a.printStackTrace();
+                    }
+                }
             }
         });
         Reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ImgLabel.SetJLabelImg(600,600,"Kinetic theory of gases.png");
             }
         });
     }
